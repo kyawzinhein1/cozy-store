@@ -9,7 +9,7 @@ const CartPage = () => {
       color: "Lyseg bright green",
       price: 169.99,
       quantity: 2,
-      image: "/public/lounge-chair.webp",
+      image: "/lounge-chair.webp",
     },
   ];
 
