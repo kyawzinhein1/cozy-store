@@ -57,14 +57,16 @@ function Header() {
           <FiSearch className="cursor-pointer text-xl" />
         </div>
         <div className="pl-8 border-l border-gray-300 h-full flex items-center text-lg">
-          <div className="relative">
-            <FiShoppingCart className="cursor-pointer transform -scale-x-100 text-xl" />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-teal-500 text-white text-xs px-1.5 py-0.5 rounded-full">
-                {totalItems}
-              </span>
-            )}
-          </div>
+          <a href="/cart">
+            <div className="relative">
+              <FiShoppingCart className="cursor-pointer transform -scale-x-100 text-xl" />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-teal-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                  {totalItems}
+                </span>
+              )}
+            </div>
+          </a>
         </div>
       </div>
     </nav>

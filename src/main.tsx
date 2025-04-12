@@ -9,6 +9,8 @@ import Shop from "./pages/Shop";
 import Collective from "./pages/Collective";
 import Contact from "./pages/Contact";
 import Designer from "./pages/Designer";
+import ProtectedCartRoute from "./components/ProtectedCartRoute";
+import CartPage from "./pages/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage/>
       },
     ],
   },
