@@ -9,7 +9,6 @@ import Shop from "./pages/Shop";
 import Collective from "./pages/Collective";
 import Contact from "./pages/Contact";
 import Designer from "./pages/Designer";
-import ProtectedCartRoute from "./components/ProtectedCartRoute";
 import CartPage from "./pages/CartPage";
 import PersonalInfo from "./pages/PersonalInfo";
 import OrderInformation from "./pages/OrderInformation";

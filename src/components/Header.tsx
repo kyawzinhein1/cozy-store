@@ -57,7 +57,7 @@ function Header() {
           <FiSearch className="cursor-pointer text-xl" />
         </div>
         <div className="pl-8 border-l border-gray-300 h-full flex items-center text-lg">
-          <a href="/cart">
+          <NavLink to="/cart">
             <div className="relative">
               <FiShoppingCart className="cursor-pointer transform -scale-x-100 text-xl" />
               {totalItems > 0 && (
@@ -66,7 +66,7 @@ function Header() {
                 </span>
               )}
             </div>
-          </a>
+          </NavLink>
         </div>
       </div>
     </nav>

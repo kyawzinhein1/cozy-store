@@ -1,6 +1,6 @@
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
 
 const ProductDetail = () => {
@@ -24,6 +24,13 @@ const ProductDetail = () => {
     quantity,
   };
 
+  const resetCart = useCartStore((state) => state.resetCart);
+
+  useEffect(() => {
+    // Clear cart on page reload
+    resetCart();
+  }, []);
+
   const handleIncrease = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -37,11 +44,17 @@ const ProductDetail = () => {
     setActiveIndex(index);
   };
 
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const handleAddToCart = () => {
-    useCartStore.getState().addToCart({
+    addToCart({
       ...product,
       quantity,
     });
+
+    // Log updated Zustand cart state
+    const updatedCart = useCartStore.getState().cart;
+    console.log("Cart after adding:", updatedCart);
   };
 
   return (
