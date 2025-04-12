@@ -1,6 +1,7 @@
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { useState } from "react";
+import { useCartStore } from "../store/useCartStore";
 
 const ProductDetail = () => {
   const thumbnails = [
@@ -37,12 +38,10 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    const productToAdd = {
+    useCartStore.getState().addToCart({
       ...product,
       quantity,
-    };
-    console.log("Added to cart:", productToAdd);
-    // Dispatch this to a global store like Zustand/Redux or localStorage
+    });
   };
 
   return (
