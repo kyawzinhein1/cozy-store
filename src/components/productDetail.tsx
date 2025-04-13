@@ -1,16 +1,18 @@
-import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
-import { FaStar, FaFacebookF, FaTwitter, FaInstagram, FaStarHalfAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
 import { useCheckoutStore } from "../store/useCheckoutStore";
+import ProductInfo from "./ProductInfo";
+import QuantitySelector from "./QuantitySelector";
+import SocialActions from "./SocialAction";
+import ThumbnailGallery from "./ThumbnailGallery";
 
 const ProductDetail = () => {
   const thumbnails = [
     "/lounge-chair.webp",
+    "/lounge-chair 5.webp",
     "/lounge-chair 2.jpg",
     "/lounge-chair 3.jpg",
     "/lounge-chair 4.png",
-    "/lounge-chair 5.webp",
   ];
 
   const [quantity, setQuantity] = useState(1);
@@ -56,105 +58,67 @@ const ProductDetail = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-10 flex">
-      {/* Left Content */}
-      <div className="max-w-md relative mt-14">
-        <h2 className="text-4xl font-bold text-gray-800 mb-5">Meryl Lounge Chair</h2>
-        <div className="flex justify-between">
-          <div>
-            <p className="text-2xl font-semibold text-gray-800 mt-2">$149.99</p>
-          </div>
-          <div className="flex items-center mt-2 space-x-2 text-sm text-gray-500">
-            <div className="flex text-yellow-500">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStarHalfAlt />
-            </div>
-            <span>4.6 / 5.0</span>
-            <span>(556)</span>
-          </div>
-        </div>
+    <section className="max-w-7xl mx-auto px-10 py-10 grid grid-cols-2 gap-16">
+      {/* Left Column */}
+      <div className="flex flex-col justify-between">
+        <div className="mt-14">
+          <ProductInfo />
 
-        {/* Description */}
-        <p className=" text-gray-600 mt-9 leading-relaxed">
-          The gently curved lines accentuated by sewn details are kind to your
-          body and pleasant to look at. Also,there's a tilt and height-adjusting
-          mechanism that's build to outlast years of ups and downs.
-        </p>
-
-        {/* Quantity & Add to Cart */}
-        <div className="mt-6 flex items-center gap-4">
-          <div className="text-gray-700 font-semibold flex items-center border border-gray-400 rounded-sm overflow-hidden py-1">
-            <button className="p-2 cursor-pointer" onClick={handleDecrease}>
-              <FiMinus />
-            </button>
-            <span className="px-4">{quantity}</span>
-            <button className="p-2 cursor-pointer" onClick={handleIncrease}>
-              <FiPlus />
+          {/* Quantity & Add to Cart */}
+          <div className="flex items-center gap-4 mt-6">
+            <QuantitySelector
+              quantity={quantity}
+              onIncrease={handleIncrease}
+              onDecrease={handleDecrease}
+            />
+            <button
+              className="bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
             </button>
           </div>
-          <button
-            className="bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700"
-            onClick={handleAddToCart}
-          >
-            Add to Cart
-          </button>
+
+          {/* Shipping Info */}
+          <p className="text-sm text-gray-600 mt-3">
+            Free 3–5 day shipping · Tool-free assembly · 30-day trial
+          </p>
         </div>
 
-        {/* Shipping Info */}
-        <p className="text-sm text-gray-600 mt-3">
-          Free 3-5 day shipping · Tool-free assembly · 30-day trial
-        </p>
-
-        <div className="absolute -bottom-10 w-full flex justify-between items-center">
-          {/* Wishlist */}
-          <div className="flex items-center gap-2 text-sm text-green-600 cursor-pointer">
-            <FiHeart />
-            <span>Add to Wishlist</span>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-4 text-gray-500">
-            <FaFacebookF className="cursor-pointer hover:text-black" />
-            <FaTwitter className="cursor-pointer hover:text-black" />
-            <FaInstagram className="cursor-pointer hover:text-black" />
-          </div>
+        {/* Social & Wishlist */}
+        <div className="mt-10">
+          <SocialActions />
         </div>
       </div>
 
-      {/* Right Content */}
+      {/* Right Column */}
       <div className="ml-auto">
-        <img
-          src={selectedImage}
-          alt="Selected Product"
-          className="max-w-xs mx-auto h-80 object-cover rounded-sm"
-        />
+        <div className="flex flex-col items-start justify-start">
+          {/* Product Image */}
+          <img
+            src={selectedImage}
+            alt="Selected Product"
+            className="w-[350px] h-[350px] object-contain rounded-sm"
+          />
 
-        {/* Slide Number */}
-        <p className="text-lg font-bold mt-8">
-          <span className="text-gray-800 text-2xl">{`0${activeIndex + 1}`}</span>
-          <span className="text-gray-400 text-lg">{` / 0${thumbnails.length}`}</span>
-        </p>
+          {/* Slide indicator */}
+          <div className="mt-6">
+            <p className="text-lg font-bold flex items-center gap-1">
+              <span className="text-gray-800 text-2xl">{`0${
+                activeIndex + 1
+              }`}</span>
+              <span className="text-gray-400 text-lg">{`/ 0${thumbnails.length}`}</span>
+            </p>
+          </div>
 
-        {/* Image Preview Thumbnails */}
-        <div className="flex justify-center mt-2 gap-3">
-          {thumbnails.map((src, idx) => (
-            <div
-              key={idx}
-              className={`border-2 ${
-                idx === activeIndex ? "border-teal-600" : "border-gray-300"
-              } p-1 rounded-md cursor-pointer`}
-              onClick={() => handleThumbnailClick(src, idx)}
-            >
-              <img
-                src={src}
-                alt={`Preview ${idx}`}
-                className="w-16 h-16 object-cover rounded"
-              />
-            </div>
-          ))}
+          {/* Thumbnail Gallery */}
+          <div className="mt-3">
+            <ThumbnailGallery
+              thumbnails={thumbnails}
+              activeIndex={activeIndex}
+              onClick={handleThumbnailClick}
+            />
+          </div>
         </div>
       </div>
     </section>
