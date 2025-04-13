@@ -53,8 +53,8 @@ const ProductDetail = () => {
     });
 
     // Log updated Zustand cart state
-    const updatedCart = useCartStore.getState().cart;
-    console.log("Cart after adding:", updatedCart);
+    // const updatedCart = useCartStore.getState().cart;
+    // console.log("Cart after adding:", updatedCart);
   };
 
   return (

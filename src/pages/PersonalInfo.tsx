@@ -1,6 +1,15 @@
-import { FiTag } from "react-icons/fi";
+import OrderSummary from "../components/OrderSummary";
+import { useCartStore } from "../store/useCartStore";
 
 const PersonalInfo = () => {
+  const cart = useCartStore((state) => state.cart);
+
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0
+  );
+  const discount = 3.19;
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
       {/* Left Column - Form */}
@@ -89,50 +98,12 @@ const PersonalInfo = () => {
       </div>
 
       {/* Right Column - Order Summary */}
-      <div className="border rounded p-6 h-fit space-y-4">
-        <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span>Price</span>
-            <span>$319.98</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Discount</span>
-            <span className="text-green-600">$31.90</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Shipping</span>
-            <span className="text-green-600">Free</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Coupon Applied</span>
-            <span>$0.00</span>
-          </div>
-          <hr />
-          <div className="flex justify-between font-semibold text-black">
-            <span>TOTAL</span>
-            <span>$288.08</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span>Estimated Delivery by</span>
-            <span className="font-medium">01 Feb, 2023</span>
-          </div>
-        </div>
-
-        {/* Coupon Input */}
-        <div className="relative mt-4">
-          <input
-            type="text"
-            placeholder="Coupon Code"
-            className="w-full border rounded px-4 py-2 text-sm"
-          />
-          <FiTag className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
-        </div>
-
-        <button className="w-full bg-teal-600 text-white mt-4 py-2 rounded hover:bg-teal-700 transition">
-          Buy
-        </button>
-      </div>
+      <OrderSummary
+        totalPrice={totalPrice}
+        discount={discount}
+        estimatedDelivery="Apr 15, 2025"
+        step="info"
+      />
     </div>
   );
 };

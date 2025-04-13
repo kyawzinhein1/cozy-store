@@ -19,27 +19,26 @@ const CartPage = () => {
   const estimatedDelivery = "01 Feb, 2023";
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
-      <h2 className="text-2xl font-semibold mb-6">
+    <div className="max-w-7xl mx-auto px-6">
+      <h2 className="text-4xl font-bold text-gray-800 mt-9 mr-14">
         Cart{" "}
-        <span className="text-gray-500 font-normal">{totalQuantity} ITEMS</span>
+        <span className="text-gray-400 font-bold text-lg align-sub">{totalQuantity} ITEMS</span>
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Cart Items */}
-        <div className="md:col-span-2 space-y-6">
+        <div className="md:col-span-2 pt-8">
           {cart.map((item) => (
-            <div key={item.id} className="flex items-start gap-6 border-b pb-6">
+            <div key={item.id} className="flex items-start gap-6 border-b border-gray-300 pb-6">
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-24 h-24 object-contain"
               />
               <div className="flex-1">
-                <h3 className="font-semibold text-lg">{item.name}</h3>
-                <p className="text-sm text-gray-500 mb-4">
-                  {/* Add more item details here if needed */}
-                  Price: ${item.price}
+                <h3 className="font-bold text-2xl text-gray-800 mb-3">{item.name}</h3>
+                <p className="text-lg font-semibold text-gray-700 mb-4">
+                  <span className="text-gray-400 font-semibold text-lg pe-2">Color</span> Lysed bright green
                 </p>
                 <div className="flex items-center space-x-4">
                   <div className="text-gray-700 font-semibold flex items-center border border-gray-400 rounded-sm overflow-hidden py-1">
@@ -58,7 +57,7 @@ const CartPage = () => {
                     </button>
                   </div>
                   <button
-                    className="text-red-500 font-medium text-sm"
+                    className="text-red-500 font-medium text-sm cursor-pointer"
                     onClick={() => removeFromCart(item.id)}
                   >
                     Remove
@@ -72,7 +71,7 @@ const CartPage = () => {
           ))}
 
           {/* Discount Info */}
-          <div className="flex items-center text-sm text-green-700 bg-green-50 border border-green-200 px-4 py-3 rounded">
+          <div className="flex items-center text-sm text-teal-700 bg-green-50 border border-teal-200 px-4 py-3 rounded mt-10">
             <FiTag className="mr-2 text-lg" />
             10% Instant Discount with Federal Bank Debit Cards on a min spend of
             $150. TCA
@@ -84,6 +83,7 @@ const CartPage = () => {
           totalPrice={totalPrice}
           discount={discount}
           estimatedDelivery={estimatedDelivery}
+          step="cart"
         />
       </div>
     </div>
