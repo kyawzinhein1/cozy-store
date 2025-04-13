@@ -5,6 +5,7 @@ import ProductInfo from "./ProductInfo";
 import QuantitySelector from "./QuantitySelector";
 import SocialActions from "./SocialAction";
 import ThumbnailGallery from "./ThumbnailGallery";
+import toast from "react-hot-toast";
 
 const ProductDetail = () => {
   const thumbnails = [
@@ -55,6 +56,7 @@ const ProductDetail = () => {
       ...product,
       quantity,
     });
+    toast.success("Product added to cart!");
   };
 
   return (
@@ -72,7 +74,7 @@ const ProductDetail = () => {
               onDecrease={handleDecrease}
             />
             <button
-              className="bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700 w-full sm:w-auto"
+              className="bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700 w-full sm:w-auto cursor-pointer"
               onClick={handleAddToCart}
             >
               Add to Cart

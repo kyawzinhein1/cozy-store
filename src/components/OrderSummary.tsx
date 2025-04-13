@@ -1,4 +1,5 @@
 // components/OrderSummary.tsx
+import toast from "react-hot-toast";
 import { FiTag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +36,7 @@ const OrderSummary = ({
       } else if (step === "info") {
         navigate("/order-info");
       } else if (step === "order") {
-        alert("Order saved to gallery!");
+        toast.success("Order saved to gallery!");
         navigate("/");
       }
     }
@@ -88,7 +89,7 @@ const OrderSummary = ({
 
       {/* Checkout Button */}
       <button
-        className="w-full bg-teal-600 text-white mt-6 py-2 rounded hover:bg-teal-700 transition"
+        className="w-full bg-teal-600 text-white mt-6 py-2 rounded hover:bg-teal-700 transition cursor-pointer"
         onClick={handleClick}
       >
         {buttonLabel}
