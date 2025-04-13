@@ -1,6 +1,7 @@
 import { FiMinus, FiPlus, FiTag } from "react-icons/fi";
 import OrderSummary from "../components/OrderSummary";
 import { useCartStore } from "../store/useCartStore";
+import { MdPercent } from "react-icons/md";
 
 const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
@@ -16,7 +17,7 @@ const CartPage = () => {
     0
   );
   const discount = 3.19;
-  const estimatedDelivery = "01 Feb, 2023";
+  const estimatedDelivery = "01 May, 2025";
 
   return (
     <div className="max-w-7xl mx-auto px-6">
@@ -71,10 +72,12 @@ const CartPage = () => {
           ))}
 
           {/* Discount Info */}
-          <div className="flex items-center text-sm text-teal-700 bg-green-50 border border-teal-200 px-4 py-3 rounded mt-10">
-            <FiTag className="mr-2 text-lg" />
-            10% Instant Discount with Federal Bank Debit Cards on a min spend of
+          <div className="flex items-center text-sm text-teal-700 bg-green-50 border border-teal-600 px-4 py-5 rounded mt-10 max-w-fit">
+            <MdPercent className="mr-2 text-lg" />
+            <span className="text-gray-800">
+              10% Instant Discount with Federal Bank Debit Cards on a min spend of
             $150. TCA
+            </span>
           </div>
         </div>
 

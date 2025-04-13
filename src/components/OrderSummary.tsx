@@ -7,6 +7,7 @@ interface OrderSummaryProps {
   discount: number;
   estimatedDelivery: string;
   step: "cart" | "info" | "order";
+  onAction?: () => void;
 }
 
 const OrderSummary = ({
@@ -14,6 +15,7 @@ const OrderSummary = ({
   discount,
   estimatedDelivery,
   step,
+  onAction,
 }: OrderSummaryProps) => {
   const navigate = useNavigate();
 
@@ -25,12 +27,17 @@ const OrderSummary = ({
       : "Save Gallery";
 
   const handleClick = () => {
-    if (step === "cart") {
-      navigate("/personal-info");
-    } else if (step === "info") {
-      navigate("/order-info");
-    } else if (step === "order") {
-      alert("Order saved to gallery!");
+    if (onAction) {
+      onAction(); // Call parent handler
+    } else {
+      if (step === "cart") {
+        navigate("/personal-info");
+      } else if (step === "info") {
+        navigate("/order-info");
+      } else if (step === "order") {
+        alert("Order saved to gallery!");
+        navigate("/");
+      }
     }
   };
 
@@ -54,10 +61,12 @@ const OrderSummary = ({
           <span>Coupon Applied</span>
           <span>$0.00</span>
         </div>
-        <hr  className="text-gray-300"/>
+        <hr className="text-gray-300" />
         <div className="flex justify-between font-semibold text-black">
-          <span>Total</span>
-          <span>${(totalPrice - discount).toFixed(2)}</span>
+          <span className="uppercase text-gray-700">Total</span>
+          <span className="text-gray-700">
+            ${(totalPrice - discount).toFixed(2)}
+          </span>
         </div>
         <div className="flex justify-between">
           <span>Estimated Delivery by</span>

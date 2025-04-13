@@ -1,120 +1,77 @@
-import React from "react";
+import OrderSummary from "../components/OrderSummary";
+import { useCartStore } from "../store/useCartStore";
+import { useCheckoutStore } from "../store/useCheckoutStore";
 
-type OrderInfo = {
-  orderNumber: string;
-  name: string;
-  email: string;
-  phone: string;
-  shipment: string;
-  paymentMethod: string;
-  address: string;
-  price: number;
-  discount: number;
-  shipping: string;
-  coupon: number;
-  total: number;
-  estimatedDelivery: string;
-};
+const OrderInformation = () => {
+  const cart = useCartStore((state) => state.cart);
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0
+  );
+  const discount = 3.19;
 
-const OrderInformation: React.FC = () => {
-  const order: OrderInfo = {
-    orderNumber: "008834TVU",
-    name: "Mr. Shinn Thant",
-    email: "shinn.thant@kbzlife.com",
-    phone: "09 974 872 745",
-    shipment: "Free (Yangon)",
-    paymentMethod: "Cash on delivery",
-    address: "Gabar Aye Bagoda Road, PyaeWa Condo, Yangon Myanmar.",
-    price: 319.98,
-    discount: 31.9,
-    shipping: "Free",
-    coupon: 0.0,
-    total: 288.08,
-    estimatedDelivery: "01 Feb, 2023",
-  };
+  const userInfo = useCheckoutStore((state) => state.info);
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <div className="bg-green-100 text-green-800 px-4 py-2 rounded mb-6">
+    <div className="px-6 pt-4 max-w-7xl mx-auto">
+      <div className="bg-teal-50 text-teal-600 font-semibold px-4 py-3 rounded mb-6">
         Order create successfully!
       </div>
 
-      <h2 className="text-xl font-semibold mb-4">Order Information</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        {/* Left side (main info) */}
         <div className="md:col-span-2 space-y-4">
+          <h2 className="text-xl font-bold mb-2">Order Information</h2>
+          <hr className="text-gray-300 mb-7" />
+
           <div>
-            <p className="text-gray-500">Order Number</p>
-            <p className="font-medium">{order.orderNumber}</p>
+            <p className="text-gray-500 font-semibold">Order Number</p>
+            <p className="font-medium">008834TVU</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <p className="text-gray-500">Name</p>
-              <p className="font-medium">{order.name}</p>
+              <p className="text-gray-500 font-semibold">Name</p>
+              <p className="font-medium">{userInfo.name}</p>
             </div>
             <div>
-              <p className="text-gray-500">Email Address</p>
-              <p className="font-medium">{order.email}</p>
+              <p className="text-gray-500 font-semibold">Email Address</p>
+              <p className="font-medium">{userInfo.email}</p>
             </div>
             <div>
-              <p className="text-gray-500">Phone Number</p>
-              <p className="font-medium">{order.phone}</p>
+              <p className="text-gray-500 font-semibold">Phone Number</p>
+              <p className="font-medium">{userInfo.phone}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-gray-500">Shipment</p>
-              <p className="font-medium">{order.shipment}</p>
+              <p className="text-gray-500 font-semibold">Shipment</p>
+              <p className="font-medium">
+                {userInfo.shipping === "Free"
+                  ? `${userInfo.shipping} (Yangon)`
+                  : userInfo.shipping}
+              </p>
             </div>
             <div>
-              <p className="text-gray-500">Payment Method</p>
-              <p className="font-medium">{order.paymentMethod}</p>
+              <p className="text-gray-500 font-semibold">Payment Method</p>
+              <p className="font-medium">{userInfo.payment}</p>
             </div>
           </div>
 
           <div>
-            <p className="text-gray-500">Address</p>
-            <p className="font-medium">{order.address}</p>
+            <p className="text-gray-500 font-semibold">Address</p>
+            <p className="font-medium">{userInfo.address}</p>
           </div>
         </div>
 
-        <div className="border p-4 rounded-md shadow-sm">
-          <h3 className="font-semibold text-lg mb-4">Order Summary</h3>
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <span>Price</span>
-              <span>${order.price.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Discount</span>
-              <span>${order.discount.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span>{order.shipping}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Coupon Applied</span>
-              <span>${order.coupon.toFixed(2)}</span>
-            </div>
-            <hr />
-            <div className="flex justify-between font-semibold text-lg">
-              <span>Total</span>
-              <span>${order.total.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Estimated Delivery by</span>
-              <span className="text-black font-medium">
-                {order.estimatedDelivery}
-              </span>
-            </div>
-            <button className="mt-4 w-full bg-teal-500 hover:bg-teal-600 text-white py-2 rounded">
-              Save Gallery
-            </button>
-          </div>
-        </div>
+        {/* Order Summary */}
+        <OrderSummary
+          totalPrice={totalPrice}
+          discount={discount}
+          estimatedDelivery="01 May, 2025"
+          step="order"
+        />
       </div>
     </div>
   );

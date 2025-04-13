@@ -2,6 +2,7 @@ import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaStar, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
+import { useCheckoutStore } from "../store/useCheckoutStore";
 
 const ProductDetail = () => {
   const thumbnails = [
@@ -25,10 +26,12 @@ const ProductDetail = () => {
   };
 
   const resetCart = useCartStore((state) => state.resetCart);
+  const clearInfo = useCheckoutStore((state) => state.clearInfo);
 
   useEffect(() => {
     // Clear cart on page reload
     resetCart();
+    clearInfo();
   }, []);
 
   const handleIncrease = () => {
@@ -61,10 +64,10 @@ const ProductDetail = () => {
     <section className="max-w-7xl mx-auto px-6 py-10 flex">
       {/* Left Content */}
       <div className="max-w-md relative mt-14">
-        <h2 className="text-4xl font-bold mb-5">Meryl Lounge Chair</h2>
+        <h2 className="text-4xl font-bold text-gray-800 mb-5">Meryl Lounge Chair</h2>
         <div className="flex justify-between">
           <div>
-            <p className="text-2xl font-semibold mt-2">$149.99</p>
+            <p className="text-2xl font-semibold text-gray-800 mt-2">$149.99</p>
           </div>
           <div className="flex items-center mt-2 space-x-2 text-sm text-gray-500">
             <div className="flex text-yellow-500">
@@ -136,7 +139,7 @@ const ProductDetail = () => {
 
         {/* Slide Number */}
         <p className="text-lg font-bold mt-8">
-          <span className="text-black text-2xl">{`0${activeIndex + 1}`}</span>
+          <span className="text-gray-800 text-2xl">{`0${activeIndex + 1}`}</span>
           <span className="text-gray-400 text-lg">{` / 0${thumbnails.length}`}</span>
         </p>
 
@@ -146,7 +149,7 @@ const ProductDetail = () => {
             <div
               key={idx}
               className={`border-2 ${
-                idx === activeIndex ? "border-green-500" : "border-transparent"
+                idx === activeIndex ? "border-teal-600" : "border-gray-300"
               } p-1 rounded-md cursor-pointer`}
               onClick={() => handleThumbnailClick(src, idx)}
             >
