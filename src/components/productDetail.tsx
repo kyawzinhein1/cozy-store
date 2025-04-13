@@ -1,5 +1,5 @@
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
-import { FaStar, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaStar, FaFacebookF, FaTwitter, FaInstagram, FaStarHalfAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
 import { useCheckoutStore } from "../store/useCheckoutStore";
@@ -25,12 +25,11 @@ const ProductDetail = () => {
     quantity,
   };
 
-  const resetCart = useCartStore((state) => state.resetCart);
+  const resetCart = useCartStore((state) => state.removeFromCart);
   const clearInfo = useCheckoutStore((state) => state.clearInfo);
 
   useEffect(() => {
-    // Clear cart on page reload
-    resetCart();
+    resetCart(product.id);
     clearInfo();
   }, []);
 
@@ -54,10 +53,6 @@ const ProductDetail = () => {
       ...product,
       quantity,
     });
-
-    // Log updated Zustand cart state
-    // const updatedCart = useCartStore.getState().cart;
-    // console.log("Cart after adding:", updatedCart);
   };
 
   return (
@@ -75,7 +70,7 @@ const ProductDetail = () => {
               <FaStar />
               <FaStar />
               <FaStar />
-              <FaStar />
+              <FaStarHalfAlt />
             </div>
             <span>4.6 / 5.0</span>
             <span>(556)</span>

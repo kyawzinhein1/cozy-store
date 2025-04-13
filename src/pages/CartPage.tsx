@@ -1,4 +1,4 @@
-import { FiMinus, FiPlus, FiTag } from "react-icons/fi";
+import { FiMinus, FiPlus } from "react-icons/fi";
 import OrderSummary from "../components/OrderSummary";
 import { useCartStore } from "../store/useCartStore";
 import { MdPercent } from "react-icons/md";
