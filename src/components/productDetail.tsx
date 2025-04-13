@@ -81,7 +81,7 @@ const ProductDetail = () => {
 
           {/* Shipping Info */}
           <p className="text-sm text-gray-600 mt-3">
-            Free 3–5 day shipping · Tool-free assembly · 30-day trial
+            Free 3-5 day shipping · Tool-free assembly · 30-day trial
           </p>
         </div>
 
@@ -92,31 +92,33 @@ const ProductDetail = () => {
       </div>
 
       {/* Right Column */}
-      <div className="flex flex-col items-center lg:items-end w-full">
-        {/* Product Image */}
-        <img
-          src={selectedImage}
-          alt="Selected Product"
-          className="w-[280px] sm:w-[320px] md:w-[350px] h-[280px] sm:h-[320px] md:h-[350px] object-contain rounded-sm"
-        />
-
-        {/* Slide indicator */}
-        <div className="mt-6 self-end">
-          <p className="text-lg font-bold flex items-center gap-1">
-            <span className="text-gray-800 text-2xl">{`0${
-              activeIndex + 1
-            }`}</span>
-            <span className="text-gray-400 text-lg">{`/ 0${thumbnails.length}`}</span>
-          </p>
-        </div>
-
-        {/* Thumbnail Gallery */}
-        <div className="mt-3 self-end">
-          <ThumbnailGallery
-            thumbnails={thumbnails}
-            activeIndex={activeIndex}
-            onClick={handleThumbnailClick}
+      <div className="ml-auto">
+        <div className="flex flex-col items-center lg:items-start w-full">
+          {/* Product Image */}
+          <img
+            src={selectedImage}
+            alt="Selected Product"
+            className="w-[280px] sm:w-[320px] md:w-[350px] h-[280px] sm:h-[320px] md:h-[350px] object-contain rounded-sm"
           />
+
+          {/* Slide indicator */}
+          <div className="mt-6">
+            <p className="text-lg font-bold flex items-center gap-1">
+              <span className="text-gray-800 text-2xl">{`0${
+                activeIndex + 1
+              }`}</span>
+              <span className="text-gray-400 text-lg">{`/ 0${thumbnails.length}`}</span>
+            </p>
+          </div>
+
+          {/* Thumbnail Gallery */}
+          <div className="mt-3">
+            <ThumbnailGallery
+              thumbnails={thumbnails}
+              activeIndex={activeIndex}
+              onClick={handleThumbnailClick}
+            />
+          </div>
         </div>
       </div>
     </section>
