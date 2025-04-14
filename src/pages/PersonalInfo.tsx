@@ -21,11 +21,40 @@ const PersonalInfo = () => {
   const [address, setAddress] = useState("");
   const [shipping, setShipping] = useState("Free");
   const [payment, setPayment] = useState("Cash on delivery");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
   const { setInfo } = useCheckoutStore();
   const navigate = useNavigate();
 
+  const validateFields = () => {
+    const newErrors = { name: "", email: "", phone: "", address: "" };
+
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^\d+$/.test(phone)) {
+      newErrors.phone = "Phone number must contain digits only";
+    }
+    if (!address.trim()) newErrors.address = "Address is required";
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every((error) => error === "");
+  };
+
   const handleBuy = () => {
+    const isValid = validateFields();
+    if (!isValid) return;
+
     setInfo({ name, email, phone, address, shipping, payment });
     navigate("/order-information");
   };
@@ -42,6 +71,7 @@ const PersonalInfo = () => {
           setPhone={setPhone}
           address={address}
           setAddress={setAddress}
+          errors={errors}
         />
         <ShippingMethod shipping={shipping} setShipping={setShipping} />
         <PaymentMethod payment={payment} setPayment={setPayment} />

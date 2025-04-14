@@ -24,11 +24,11 @@ const CartItem = ({ id, name, image, price, quantity }: Props) => {
         </p>
         <div className="flex items-center space-x-4">
           <div className="text-gray-700 font-semibold flex items-center border border-gray-400 rounded-sm overflow-hidden py-1">
-            <button className="p-2" onClick={() => decreaseQty(id)}>
+            <button className="p-2 cursor-pointer" onClick={() => decreaseQty(id)}>
               <FiMinus />
             </button>
             <span className="px-4">{quantity}</span>
-            <button className="p-2" onClick={() => increaseQty(id)}>
+            <button className="p-2 cursor-pointer" onClick={() => increaseQty(id)}>
               <FiPlus />
             </button>
           </div>

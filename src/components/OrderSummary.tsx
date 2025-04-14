@@ -89,8 +89,13 @@ const OrderSummary = ({
 
       {/* Checkout Button */}
       <button
-        className="w-full bg-teal-600 text-white mt-6 py-2 rounded hover:bg-teal-700 transition cursor-pointer"
+        className={`w-full mt-6 py-2 rounded transition cursor-pointer ${
+          totalPrice === 0
+            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+            : "bg-teal-600 text-white hover:bg-teal-700"
+        }`}
         onClick={handleClick}
+        disabled={totalPrice === 0}
       >
         {buttonLabel}
       </button>

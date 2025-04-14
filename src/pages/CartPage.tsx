@@ -26,6 +26,12 @@ const CartPage = () => {
         </span>
       </h2>
 
+      {totalPrice === 0 && (
+        <p className="text-sm text-red-500">
+          No product added your cart.
+        </p>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Cart Items and Discount */}
         <div className="md:col-span-2">
