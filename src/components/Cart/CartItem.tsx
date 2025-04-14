@@ -33,7 +33,7 @@ const CartItem = ({ id, name, image, price, quantity }: Props) => {
             </button>
           </div>
           <button
-            className="text-red-500 text-sm cursor-pointer"
+            className="text-red-500 text-sm font-semibold cursor-pointer"
             onClick={() => removeFromCart(id)}
           >
             Remove

@@ -2,7 +2,7 @@ import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const ProductInfo = () => (
   <section className="max-w-md">
-    <h2 className="text-4xl font-bold text-gray-800 mb-5">
+    <h2 className="text-4xl font-semibold text-gray-800 mb-5">
       Meryl Lounge Chair
     </h2>
     <div className="flex justify-between">
@@ -20,9 +20,9 @@ const ProductInfo = () => (
       </div>
     </div>
 
-    <p className=" text-gray-600 mt-9 leading-relaxed">
+    <p className=" text-gray-600 text-md mt-10 leading-relaxed">
       The gently curved lines accentuated by sewn details are kind to your body
-      and pleasant to look at. Also,there's a tilt and height-adjusting
+      and pleasant to look at. Also, there's a tilt and height-adjusting
       mechanism that's build to outlast years of ups and downs.
     </p>
   </section>

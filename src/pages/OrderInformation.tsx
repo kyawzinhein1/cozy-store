@@ -12,18 +12,20 @@ const OrderInformation = () => {
 
   return (
     <div className="px-6 pt-4 max-w-7xl mx-auto">
-      <div className="bg-teal-50 text-teal-600 font-semibold px-4 py-3 rounded mb-6">
+      <div className="bg-teal-50 text-teal-600 px-6 py-3 rounded-sm mb-6">
         Order create successfully!
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <OrderInfoDetails />
-        <OrderSummary
-          totalPrice={totalPrice}
-          discount={discount}
-          estimatedDelivery="01 May, 2025"
-          step="order"
-        />
+        <div className="mt-8">
+          <OrderSummary
+            totalPrice={totalPrice}
+            discount={discount}
+            estimatedDelivery="01 May, 2025"
+            step="order"
+          />
+        </div>
       </div>
     </div>
   );

@@ -43,16 +43,16 @@ const OrderSummary = ({
   };
 
   return (
-    <div className="border border-gray-300 p-6 rounded shadow-sm h-fit">
+    <div className="border border-gray-300 p-6 rounded shadow-sm">
       <h4 className="font-bold text-xl text-gray-700 mb-6">Order Summary</h4>
-      <div className="space-y-3 text-sm text-gray-700">
+      <div className="space-y-5 text-sm text-gray-700">
         <div className="flex justify-between">
           <span>Price</span>
           <span>${totalPrice.toFixed(2)}</span>
         </div>
         <div className="flex justify-between">
           <span>Discount</span>
-          <span className="text-green-600">-${discount.toFixed(2)}</span>
+          <span>${discount.toFixed(2)}</span>
         </div>
         <div className="flex justify-between">
           <span>Shipping</span>
@@ -76,16 +76,18 @@ const OrderSummary = ({
       </div>
 
       {/* Coupon Input */}
-      <div className="mt-6">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Coupon Code"
-            className="w-full border border-gray-300 rounded px-4 py-2 text-sm"
-          />
-          <FiTag className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
+      {step !== "order" && (
+        <div className="mt-6">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Coupon Code"
+              className="w-full border border-gray-300 rounded px-4 py-2 text-sm"
+            />
+            <FiTag className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Checkout Button */}
       <button

@@ -4,7 +4,7 @@ const OrderInfoDetails = () => {
   const userInfo = useCheckoutStore((state) => state.info);
 
   return (
-    <div className="md:col-span-2 space-y-4">
+    <div className="md:col-span-2 space-y-10">
       <h2 className="text-xl font-bold mb-2">Order Information</h2>
       <hr className="text-gray-300 mb-7" />
 
@@ -27,8 +27,9 @@ const OrderInfoDetails = () => {
           <p className="font-medium">{userInfo.phone}</p>
         </div>
       </div>
+      <hr className="text-gray-300 mb-7" />
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <div>
           <p className="text-gray-500 font-semibold">Shipment</p>
           <p className="font-medium">

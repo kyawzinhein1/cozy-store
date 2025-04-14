@@ -60,7 +60,7 @@ const PersonalInfo = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
       <div className="md:col-span-2 space-y-10">
         <PersonalForm
           name={name}
@@ -77,7 +77,7 @@ const PersonalInfo = () => {
         <PaymentMethod payment={payment} setPayment={setPayment} />
       </div>
 
-      <div className="mt-12">
+      <div>
         <OrderSummary
           totalPrice={totalPrice}
           discount={discount}

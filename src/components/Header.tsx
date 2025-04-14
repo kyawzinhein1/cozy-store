@@ -10,7 +10,7 @@ function Header() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <nav className="border-b border-gray-300 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-sm backdrop-saturate-150 border-b border-gray-300 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       {/* Logo */}
       <Link to={"/"}>
         <h1 className="font-bold text-2xl">
@@ -19,20 +19,35 @@ function Header() {
       </Link>
 
       {/* Desktop Nav Links */}
-      <div className="hidden md:flex space-x-8 lg:space-x-10 items-center font-medium text-gray-500 uppercase">
-        <NavLink to="/" className={({ isActive }) => (isActive ? "text-black" : undefined)}>
+      <div className="hidden md:flex space-x-8 lg:space-x-10 items-center font-medium text-gray-600 uppercase">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "text-black" : undefined)}
+        >
           Shop
         </NavLink>
-        <NavLink to="/collective" className={({ isActive }) => (isActive ? "text-black" : undefined)}>
+        <NavLink
+          to="/collective"
+          className={({ isActive }) => (isActive ? "text-black" : undefined)}
+        >
           Collective
         </NavLink>
-        <NavLink to="/designer" className={({ isActive }) => (isActive ? "text-black" : undefined)}>
-          Designer
+        <NavLink
+          to="/designer"
+          className={({ isActive }) => (isActive ? "text-black" : undefined)}
+        >
+          Designers
         </NavLink>
-        <NavLink to="/about" className={({ isActive }) => (isActive ? "text-black" : undefined)}>
+        <NavLink
+          to="/about"
+          className={({ isActive }) => (isActive ? "text-black" : undefined)}
+        >
           About us
         </NavLink>
-        <NavLink to="/contact" className={({ isActive }) => (isActive ? "text-black" : undefined)}>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "text-black" : undefined)}
+        >
           Contact
         </NavLink>
       </div>
@@ -41,12 +56,16 @@ function Header() {
       <div className="flex items-center text-gray-600 font-medium h-full">
         {/* Mobile menu toggle */}
         <div className="flex items-center pr-4 sm:pr-6 space-x-4 sm:space-x-6 text-lg md:hidden">
-          <RiMenu5Line className="cursor-pointer text-xl" onClick={() => setMenuOpen(!menuOpen)} />
+          <RiMenu5Line
+            className="cursor-pointer text-xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
           <FiSearch className="cursor-pointer text-xl" />
         </div>
 
-        {/* Desktop search */}
+        {/* Desktop */}
         <div className="hidden md:flex items-center pr-8 space-x-8 text-lg">
+          <RiMenu5Line className="cursor-pointer text-xl" />
           <FiSearch className="cursor-pointer text-xl" />
         </div>
 

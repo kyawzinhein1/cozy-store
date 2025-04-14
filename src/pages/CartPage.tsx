@@ -18,28 +18,29 @@ const CartPage = () => {
   const estimatedDelivery = "01 May, 2025";
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
-      <h2 className="text-4xl font-bold text-gray-800 mt-9 mr-14">
-        Cart{" "}
-        <span className="text-gray-400 font-bold text-lg align-sub">
-          {totalQuantity} ITEMS
-        </span>
-      </h2>
+  <div className="max-w-7xl mx-auto px-6 mt-9">
+    <div className="md:flex md:items-start md:justify-between">
+      {/* Left Side: Title and Cart Content */}
+      <div className="md:w-2/3 md:pr-12">
+        <h2 className="text-4xl font-bold text-gray-800">
+          Cart{" "}
+          <span className="text-gray-400 font-bold text-lg align-sub ml-4">
+            {totalQuantity} ITEMS
+          </span>
+        </h2>
 
-      {totalPrice === 0 && (
-        <p className="text-sm text-red-500">
-          No product added your cart.
-        </p>
-      )}
+        {totalPrice === 0 && (
+          <p className="text-sm text-red-500 mb-4">
+            No product added your cart.
+          </p>
+        )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Cart Items and Discount */}
-        <div className="md:col-span-2">
-          <CartList />
-          <DiscountInfo />
-        </div>
+        <CartList />
+        <DiscountInfo />
+      </div>
 
-        {/* Order Summary */}
+      {/* Right Side: Order Summary */}
+      <div className="md:w-1/3 mt-10 md:mt-0">
         <OrderSummary
           totalPrice={totalPrice}
           discount={discount}
@@ -48,7 +49,9 @@ const CartPage = () => {
         />
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default CartPage;

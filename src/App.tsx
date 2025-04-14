@@ -7,7 +7,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <main>
+      <main className="pt-16">
         <Toaster position="top-center" />
         <AppRoutes />
       </main>
